@@ -31,14 +31,17 @@ SWYNEX is a responsive personal expense tracker built using HTML, CSS, and JavaS
 2. Open `index.html` in your browser.
 3. You can also use the Live Server extension.
 
+
 ## Project Structure
 
+```text
 SWYNEX-Expense-Tracker/
 │
 ├── index.html
 ├── style.css
 ├── script.js
 └── README.md
+```
 
 ##  Data Storage
 

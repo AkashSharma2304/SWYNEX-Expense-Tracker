@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Main Application Container -->
+    <div class="app-container">
+        <!-- sidebar section -->
+        <aside class="sidebar">
+            <button id="closeSidebar" class="close-sidebar">✕</button>
+            <div class="logo">
+                <h2>Expense Tracker</h2>
+            </div>
+
+            <nav class="sidebar-nav">
+
+                <a href="#dashboard" class="active">Dashboard</a>
+                <a href="#transaction">Transactions</a>
+                <a href="#income">Income</a>
+                <a href="#income">Expenses</a>
+                <a href="#setting">Settings</a>
+            </nav>
+        </aside>
+        <!-- main Content Section -->
+        <main class="main-content">
+            <header class="header" id="dashboard">
+                <button id="menuToggle" class="menu-toggle">
+                    ☰
+                </button>
+
+                <div class="welcome">
+
+                    <h1>Dashboard</h1>
+                    <p id="greeting"></p>
+                    <p class="welcome-text">welcome Back! Here's Your Financial Overview.</p>
+                </div>
+                <div class="header-actions">
+                    <!-- <input type="search" id="searchInput" placeholder="Search Transations..... "> -->
+                    <div class="profile">
+                        <span id="username"></span>
+                    </div>
+                </div>
+            </header>
+
+
+            <div class="summary-cards" id="#transactions">
+                <div class="summary-card">
+                    <h2>Total Balance</h2>
+                    <span id="totalBalance">0</span>
+                </div>
+                <div class="summary-card-expenses">
+                    <h2>Total Expenses</h2>
+                    <span id="totalExpenses">0</span>
+                </div>
+                <div class="summary-card">
+                    <h2>Total Income</h2>
+                    <span id="totalIncome">0</span>
+                </div>
+            </div>
+
+
+            <div class="financial-overview">
+                <div class="monthly-income">
+                    <h3>Top Spending Categories</h3>
+                    <canvas id="monthly-income-chart"></canvas>
+                </div>
+                <div class="expense-categories">
+                    <h3>Expense Category</h3>
+                    <canvas id="expense-categories-chart"></canvas>
+                </div>
+            </div>
+
+            <!-- Add Transaction Section -->
+            <section class="add-transaction" id="transaction">
+                <h2>Add Transaction</h2>
+                <form id="transactionForm">
+                    <div>
+                        <label for="transactiontitle">Transaction Title :</label>
+                        <input type="text" id="transactiontitle" placeholder="Enter Transaction Title" minlength="2"  required>
+                    </div>
+
+                    <div>
+                        <label for="amount">Amount :</label>
+                        <input type="number" id="amount" placeholder="Enter Amount" min="0" step="0.01" required>
+                    </div>
+
+
+
+                    <div>
+                        <label for="transactionType">Transaction Type :</label>
+                        <select name="transactionType" id="transactionType" required>
+                            <option value="" selected disabled>Select Transaction Type</option>
+                            <option value="income">Income</option>
+                            <option value="expense">Expense</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="category">Category :</label>
+                        <select name="category" id="category" required>
+                            <option value="" selected disabled>Select Category</option>
+                            <option value="food">Food</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="travel">Travel</option>
+                            <option value="bills">Bills</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="transactionDate">Date :</label>
+                        <input type="date" id="transactionDate" required>
+                    </div>
+                    <div class="description-field">
+                        <label for="description"> Description :</label>
+                        <textarea name="description" id="description" rows="3"
+                            placeholder="Enter Transaction Description"></textarea>
+                    </div>
+
+
+
+
+
+                    <button type="submit">Add Transaction</button>
+
+                </form>
+            </section>
+            <!-- -----------------------Transaction History---------------------------------------------- -->
+
+            <section class="transaction-history" id="income">
+
+                <h2>Recent Transactions</h2>
+                <input type="search" id="searchInput" placeholder="Search transactions...">
+
+                <div class="transaction-filters">
+                    <label for="filterType">Filter By Type :</label>
+                    <select name="filterType" id="filterType">
+                        <option value="all" selected>All Transaction</option>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+
+                    <label for="filterCategory">Filter By Category :</label>
+                    <select name="filterCategory" id="filterCategory">
+                        <option value="all" selected>All</option>
+                        <option value="food">Food</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="travel">Travel</option>
+                        <option value="bills">Bills</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionTableBody"></tbody>
+
+                </table>
+            </section>
+
+
+            <section class="settings" id="setting">
+                <h2>Settings</h2>
+                <div class="profile-settings">
+                    <h3>Profile Settings</h3>
+                    <label for="userName">Your Name</label>
+                    <input type="text" id="userName" placeholder="Enter Your Name">
+                </div>
+                <div class="currency-settings">
+                    <label for="currency">Select Currency</label>
+                    <select name="currency" id="currency">
+                        <option value="" selected>Select Currency</option>
+                        <option value="INR">Indian Rupee (₹)</option>
+                        <option value="USD">US Dollar ($)</option>
+                        <option value="EURO">EUR (€)</option>
+                    </select>
+                </div>
+
+                <div class="data-management">
+                    <button type="button" id="clearTransactions">Clear All Transaction</button>
+                    <button type="button" id="resetName">Reset Name</button>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- -------------------Delete Confirmation Box------------------------ -->
+    <div class="modal-overlay" id="deletemodel">
+        <div class="model-box">
+            <h3>Clear All Transactions?</h3>
+            <p>Are you sure you want to delete all transactions?</p>
+
+            <div class="model-buttons">
+                <button type="button" id="cancelDelete">Cancel</button>
+                <button type="button" id="confirmDelete"> Yes, Delete</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <button id="backToTop">↑</button>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
